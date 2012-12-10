@@ -8,6 +8,52 @@ Keypad should be connected to Port 1 (4 columns first, then 4 rows). IR LED to P
 
 This remote, with light use, should get you many years of battery life on a CR2032 or similar coin cell.
 
+## Schematic ##
+
+
+       ^
+      / \
+     /3v3\
+     -----
+       |
+       |             +----------------------------+
+       |             |                            |
+       +-------------+VDD (1)            (2)  P1.0+------------------+
+       |             |                            |                  |
+       |             |                   (3)  P1.1+---------------+  |
+       |             |                            |               |  |
+       |             |                   (4)  P1.2+------------+  |  |
+       |             |                            |            |  |  |
+       |             |                   (5)  P1.3+---------+  |  |  |
+       |             |                            |         |  |  |  |
+       |             |                            |      +--|--|--|--|--+
+       |             |                            |      |  |  |  |  |  |
+       |             |                   (6)  P1.4+--------[1][2][3][A] |
+       |  +-------+  |                            |      |  |  |  |  |  |
+       +--+ 10K   +--+RST (10)           (7)  P1.5+--------[4][5][6][B] |
+       |  +-------+  |                            |      |  |  |  |  |  |
+       |             |                   (8)  P1.6+--------[7][8][9][C] |
+       |             |                            |      |  |  |  |  |  |
+     -----           |                   (9)  P1.7+--------[*][0][#][D] |
+     ----- 10nF      |                            |      |              |
+       |             |                            |      +--------------+
+       |             |         MSP430G2211        |     4x4 Matrix Keypad
+       |             |                            |
+       |             |                            |
+       +-------------+VSS (14)           (13) P2.7+---------------+
+       |             |                            |               |
+       |             |                            |             -----
+       |             +----------------------------+      IR LED \   /
+       |                                                         \ /
+       |                                                        -----
+       |                                                          |
+       |                                                          |
+     -----                                                      -----
+     \GND/                                                      \GND/
+      \ /                                                        \ /
+       V                                                          V
+
+
 # Acknowledgements #
 
 Thanks to [Sergio Campamá](https://github.com/sergiocampama) for providing (unknowingly) the Rakefile ;)
